@@ -24,6 +24,7 @@ var storage = multer.diskStorage({
 
 
 app.use(cors());
+app.use(express.static("./public"));
 app.use(bodyparser.json());
 const username= 'admin@gmail.com';
 const password='12345678';
@@ -280,7 +281,7 @@ app.post("/getlink",verifyToken,function(req,res){
   
  Userdata.findById({"_id":id})
   .then((data)=>{
-       var link=`/api/${temp}/${cvid}`
+       var link=`${temp}/${cvid}`
     var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
