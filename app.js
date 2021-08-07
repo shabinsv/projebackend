@@ -11,13 +11,13 @@ const app= new express();
 var multer= require('multer');
 var nodemailer = require('nodemailer');
 var xxa="";
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
       destination: function (req, file, cb) {
-        cb(null, './public/images')
+        cb(null, __dirname+'/public/images');
       },
       filename: function (req, file, cb) {
        xxa=file.originalname;
-        cb(null, file.originalname)
+        cb(null, file.fieldname+ '-' +Data.now()+path.extname( file.originalname));
       }
   })
   var upload = multer({ storage: storage })
