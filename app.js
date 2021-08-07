@@ -13,7 +13,7 @@ var nodemailer = require('nodemailer');
 var xxa="";
 var storage = multer.diskStorage({
       destination: function (req, file, cb) {
-        cb(null, 'public/images')
+        cb(null, './public/images')
       },
       filename: function (req, file, cb) {
        xxa=file.originalname;
@@ -183,7 +183,7 @@ app.get("/check/:id",function(req,res){
   })
 })
 
-app.post("/image/:id",verifyToken,upload.single('image'),function(req,res){
+app.post("/image/:id",upload.single('image'),function(req,res){
   id = req.params.id;
   Resumedata.updateOne({"ID":id},
   {$set:{"photo":"/api/images/"+xxa
